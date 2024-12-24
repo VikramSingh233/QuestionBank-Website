@@ -1,0 +1,6 @@
+{"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"GET\",\"url\":\"/\",\"status\":\"200\",\"responseTime\":\"13.265\"}","timestamp":"2024-12-24T10:00:36.652Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"GET\",\"url\":\"/css/index.css\",\"status\":\"200\",\"responseTime\":\"4.970\"}","timestamp":"2024-12-24T10:00:36.713Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"GET\",\"url\":\"/src/iitram_logo_only-removebg-preview.png\",\"status\":\"404\",\"responseTime\":\"2.936\"}","timestamp":"2024-12-24T10:00:37.855Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"GET\",\"url\":\"/js/script.js\",\"status\":\"200\",\"responseTime\":\"3.135\"}","timestamp":"2024-12-24T10:00:37.865Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"GET\",\"url\":\"/favicon.ico\",\"status\":\"404\",\"responseTime\":\"1.668\"}","timestamp":"2024-12-24T10:00:38.620Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"GET\",\"url\":\"/html/mysubject.html\",\"status\":\"404\",\"responseTime\":\"1.245\"}","timestamp":"2024-12-24T10:00:59.713Z"}

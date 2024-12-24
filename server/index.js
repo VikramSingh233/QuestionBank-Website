@@ -2,7 +2,8 @@ import dotenv from 'dotenv';
 import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
-
+import logger from '../logger.js'
+import morgan from 'morgan'
 // Derive __dirname in ES modules
 const __dirname = path.resolve();  // Use path.resolve to get the absolute directory path
 dotenv.config();
@@ -12,7 +13,22 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); 
 
+const morganFormat = ':method :url :status :response-time ms';
 
+app.use(morgan(morganFormat , {
+  stream:{
+    write:(message)=>{
+      const logObject = {
+        method : message.split(' ')[0],
+        url : message.split(' ')[1],
+        status : message.split(' ')[2],
+        responseTime : message.split(' ')[3],
+
+      };
+      logger.info(JSON.stringify(logObject));
+    }
+  }
+}));
 
 // Serve static files from the "css" folder
 app.use('/css', express.static(path.join(__dirname, 'css')));
