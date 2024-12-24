@@ -4,3 +4,8 @@
 {"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"GET\",\"url\":\"/js/script.js\",\"status\":\"200\",\"responseTime\":\"3.135\"}","timestamp":"2024-12-24T10:00:37.865Z"}
 {"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"GET\",\"url\":\"/favicon.ico\",\"status\":\"404\",\"responseTime\":\"1.668\"}","timestamp":"2024-12-24T10:00:38.620Z"}
 {"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"GET\",\"url\":\"/html/mysubject.html\",\"status\":\"404\",\"responseTime\":\"1.245\"}","timestamp":"2024-12-24T10:00:59.713Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"GET\",\"url\":\"/\",\"status\":\"304\",\"responseTime\":\"9.873\"}","timestamp":"2024-12-24T15:25:10.659Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"GET\",\"url\":\"/css/index.css\",\"status\":\"304\",\"responseTime\":\"3.575\"}","timestamp":"2024-12-24T15:25:10.710Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"GET\",\"url\":\"/src/iitram_logo_only-removebg-preview.png\",\"status\":\"404\",\"responseTime\":\"5.778\"}","timestamp":"2024-12-24T15:25:10.725Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"GET\",\"url\":\"/js/script.js\",\"status\":\"304\",\"responseTime\":\"9.866\"}","timestamp":"2024-12-24T15:25:10.730Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"GET\",\"url\":\"/favicon.ico\",\"status\":\"404\",\"responseTime\":\"1.661\"}","timestamp":"2024-12-24T15:25:12.073Z"}
