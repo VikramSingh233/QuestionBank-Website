@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link rel="stylesheet" href="/css/aboutUs.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    
+</head>
+<body>
+        <section class="nav-section">
+          <nav class="navbar">
+              <div class="nav-container">
+                  <img src="/src/iitram_logo_only-removebg-preview.png" class="Logo">
+                  <div id="menu-time" class="menu-data animate__animated ">
+                      <a onclick="closebar()"><i id="close" class="size fa-solid fa-xmark"></i></a>
+                      <a href="/html/index.html">Home</a>
+                      <a href="/html/mysubject.html">My Subject</a>
+                      <a href="#"class="aboutusPage">About Us</a>
+                      <a href="/html/ContactUS.html">Conatct Us</a>
+                      
+                      <div class="profilePic" id="profilePic"><a href="/html/profile.html"><img src="https://tse4.mm.bing.net/th?id=OIP.Zmki3GIiRk-XKTzRRlxn4QHaER&pid=Api&P=0&h=180" alt=""></a>Setting</div>
+                      
+                  </div>
+                  <a id="Menu-bar" onclick="menubar()"><i class="size-icon fa-solid fa-bars"></i></a>
+              </div>
+          </nav>
+
+          <div class="header">
+            <h1>Welcome to Q-Banker</h1>
+            <p>Your Ultimate Platform for Comprehensive Question Bank Management</p>
+        </div>
+    
+        <!-- About Section -->
+        <div class="about">
+            <h2>Why Q-Banker?</h2>
+            <p>Q-Banker is the next-generation question bank system designed for educators, institutions, and students. It provides advanced tools to simplify question management, paper generation, and learning processes. Whether you are creating assignments, preparing for exams, or designing an entire syllabus—we have you covered!</p>
+        </div>
+    
+        <div class="about">
+            <h2>Key Features</h2>
+            <div class="features">
+    
+              
+                <div class="feature">
+                    <h3>Dynamic Question Categories</h3>
+                    <p>Organize questions into subjects and categories such as **MCQ**, **Descriptive**, or True/False.</p>
+                </div>
+    
+             
+                <div class="feature">
+                    <h3>Solutions</h3>
+                    <p>Detailed solutions for questions to help learners understand concepts clearly.</p>
+                </div>
+    
+                <div class="feature">
+                    <h3>Automatic Paper Generation</h3>
+                    <p>Generate question papers with **customized difficulty**, topics, and formats in just a few clicks.</p>
+                </div>
+    
+          
+                <div class="feature">
+                    <h3>View & Download Questions</h3>
+                    <p>At any point of time ,User can view subject Question Bank and Edit them or Download it.</p>
+                </div>
+    
+                <div class="feature">
+                    <h3>Question Randomization</h3>
+                    <p>Automatically shuffle questions to avoid repetition in exams and practice papers.</p>
+                </div>
+    
+                
+                <div class="feature">
+                    <h3>Customizable Templates</h3>
+                    <p>Design question papers with customized **headers**, numbering systems, and formatting styles.</p>
+                </div>
+    
+            </div>
+        </div>
+    
+    
+        <!-- Team Section -->
+        <section class="team">
+            <h2>Meet Our Team</h2>
+            <div class="team-members">
+    
+                <!-- Team Member 1 -->
+                <div class="member">
+                    <img src="https://via.placeholder.com/100" alt="Vikram Singh">
+                    <h3>Vikram Singh</h3>
+                    
+                    <div class="social-icons">
+                        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+    
+                <!-- Team Member 2 -->
+                <div class="member">
+                    <img src="https://via.placeholder.com/100" alt="Harsh Khatana">
+                    <h3>Harsh Khatana</h3>
+                    
+                    <div class="social-icons">
+                        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <!-- Footer -->
+        <div class="footer">
+            <p>&copy; 2024 Q-Banker | Simplifying Education For Better Education.</p>
+        </div>
+        </section>
+
+
+
+    
+
+<script src="https://kit.fontawesome.com/7103fc097b.js" crossorigin="anonymous"></script>
+<script>
+
+function menubar() {
+    let hihu = document.querySelector('.menu-data');
+    let element = document.getElementById('Menu-bar');
+    // let profilepic = document.getElementById("profilePic");
+
+
+    if (hihu) {
+        hihu.classList.remove('animate__fadeOut');
+        element.style.display = 'none';
+        hihu.style.zIndex = '1';
+        hihu.classList.add('animate__fadeIn');
+        // profilepic.remove();
+        
+
+    }
+}
+
+function closebar() {
+    let hihu = document.querySelector('.menu-data');
+    let element = document.getElementById('Menu-bar');
+    if (hihu) {
+        hihu.classList.remove('animate__fadeIn');
+        hihu.style.zIndex = '-20';
+        element.style.display = 'block';
+        hihu.classList.add('animate__fadeOut');
+    }
+}
+</script>
+
+
+
+</body>
+</html>

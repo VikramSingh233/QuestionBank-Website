@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q-Banker Profile</title>
+    <link rel="stylesheet" href="/css/profile.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+</head>
+<body>
+        <section class="nav-section">
+          <nav class="navbar">
+              <div class="nav-container">
+                  <img src="/src/iitram_logo_only-removebg-preview.png" class="Logo">
+                  <div id="menu-time" class="menu-data animate__animated ">
+                      <a onclick="closebar()"><i id="close" class="size fa-solid fa-xmark"></i></a>
+                      <a href="/html/index.html">Home</a>
+                      <a href="/html/mysubject.html">My Subject</a>
+                      <a href="/html/aboutUs.html">About Us</a>
+                      <a href="/html/ContactUs.html">Contact Us</a>
+                      
+                      <div class="profilePic settingPage" id="profilePic"><img src="https://tse4.mm.bing.net/th?id=OIP.Zmki3GIiRk-XKTzRRlxn4QHaER&pid=Api&P=0&h=180" alt="">Setting</div>
+                      
+                  </div>
+                  <a id="Menu-bar" onclick="menubar()"><i class="size-icon fa-solid fa-bars"></i></a>
+              </div>
+          </nav>
+        
+          <div class="profile-card">
+            <form id="profileForm">
+                <div class="text-center">
+                    <img src="https://tse4.mm.bing.net/th?id=OIP.Zmki3GIiRk-XKTzRRlxn4QHaER&pid=Api&P=0&h=180" alt="Profile Picture" id="profilePicture">
+                    <input type="file" class="form-control" accept="image/*" id="changeProfilePicture" style="display: none;">
+                </div>
+    
+                <h3 id="displayName">John Doe</h3>
+    
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Edit Name" id="nameField" value="John Doe">
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Edit Email" id="emailField" value="john.doe@example.com">
+                </div>
+
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Previous Password" id="prevPassword">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="New Password" id="newPassword">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Confirm New Password" id="confirmPassword">
+                </div>
+
+                <button type="button" class="btn btn-save" id="saveChanges">Save Changes</button>
+                <button type="button" class="btn btn-logout">Logout</button>
+            </form>
+        </div>
+
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeModal">&times;</span>
+                <h3>Select an Option:</h3>
+                <button id="viewProfilePic" class="btn">View Profile Picture</button>
+                <button id="changeProfilePic" class="btn">Change Profile Picture</button>
+            </div>
+        </div>
+    
+
+        <div id="viewImagePopup" class="popup">
+            <div class="popup-content">
+                <span class="close" id="closeImagePopup">&times;</span>
+                <img id="popupImage" src="https://via.placeholder.com/120" alt="Profile Picture">
+                <button id="removeImagePopup" class="btn">Remove Profile Picture</button>
+            </div>
+        </div>
+
+
+<script src="https://kit.fontawesome.com/7103fc097b.js" crossorigin="anonymous"></script>
+<script src="/js/profile.js"></script>
+
+</body>
+</html>
+

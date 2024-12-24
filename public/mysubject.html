@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Q-Banker Subjects</title>
+    <link rel="stylesheet" href="/css/mysubject.css" />
+  </head>
+
+  <body>
+    <section class="nav-section">
+      <nav class="navbar">
+          <div class="nav-container">
+              <img src="/src/iitram_logo_only-removebg-preview.png" class="Logo">
+              <div id="menu-time" class="menu-data animate__animated ">
+                <a onclick="closebar()"><i id="close" class="size fa-solid fa-xmark"></i></a>
+                  <a href="/html/index.html">Home</a>
+                  <a href="#" class="mysubjectPage">My Subject</a>
+                  <a href="/html/aboutUs.html">About Us</a>
+                  <a href="/html/ContactUs.html">Contact Us</a>
+                  
+                  <div class="profilePic" id="profilePic"><a href="/html/profile.html"><img src="https://tse4.mm.bing.net/th?id=OIP.Zmki3GIiRk-XKTzRRlxn4QHaER&pid=Api&P=0&h=180" alt=""></a>Setting</div>
+                  
+              </div>
+              <a id="Menu-bar" onclick="menubar()"><i class="size-icon fa-solid fa-bars"></i></a>
+          </div>
+      </nav>
+      <article>
+        <h1>Welcome to Q-Banker ,<b>Vikram</b></h1>
+        <div class="mySubjectButtons">
+        <button type="submit" class="AddSubject" id="AddSubject">
+          + Add Subject
+        </button>
+        <button type="submit" class="Download" id="Download">
+         Download/Edit
+        </button>
+        <button type="submit" class="GenerateQuestionPaper" id="GenerateQuestionPaper">
+          <a class="generateQuestionPaperlink" href="/html/generateQuestionPaper.html">Generate Question Paper</a>
+        </button>
+        
+      </div>
+    </article>
+    
+    <details>
+      Here You can Add Subject to Your Dashboard . After Adding the Subject
+      You Can Further Add Questions into that .
+    </details>
+      <div class="SubjectGridBox" id="SubjectGridBox">
+        
+
+      </div>
+    <div class="AddSubjectPopup">
+      <button class="close-popup-btn">&times;</button>
+      <form class="form" id="AddSubjectForm">
+        <h3 class="title">ADD SUBJECT</h3>
+        <div class="inputContainer">
+          <input type="text" class="input" id="subjectname" name="subjectname"  placeholder="" />
+          <label for="subjectname" class="label" id="label">Subject Name</label>
+        </div>
+        <div class="inputContainer">
+          <input type="text" class="input"id="teachername" name="teachername" placeholder="" />
+          <label for="teachername" class="label"id="label" >Teacher Name</label>
+        </div>
+        <button type="submit" class="submitBtn">Submit</button>
+        <div class="errorDisplay" id="errorDisplaydiv">Subject Name And Teacher Name , Both Input feild must be filled .... </div>
+      </form>
+    </div>
+    
+    <div class="popup-overlay"></div>
+    
+  </div>
+</div>
+
+
+    </section>
+
+    
+
+    <!-- Popup container -->
+    <div id="downloadpopupContainer" class="downloadpopupContainer">
+      <div class="download-popup-content">
+        <span id="closeDownloadPopup" class="closeDownloadPopup">&times;</span>
+        <h2>Download/Edit Subject Content</h2>
+        <div class="DownloadPopupContainer" id="DownloadPopupContainer">
+          
+      </div>
+    </div>
+
+  <script src="/js/mysubject.js">
+  </script>
+  </body>
+</html>
+
+
+
+
+

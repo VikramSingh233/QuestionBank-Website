@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="/css/ContactUs.css">
+    <script>
+        function showForm() {
+            document.querySelector('.container').style.display = 'block';
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+
+        
+function menubar() {
+    let hihu = document.querySelector('.menu-data');
+    let element = document.getElementById('Menu-bar');
+    // let profilepic = document.getElementById("profilePic");
+
+
+    if (hihu) {
+        hihu.classList.remove('animate__fadeOut');
+        element.style.display = 'none';
+        hihu.style.zIndex = '1';
+        hihu.classList.add('animate__fadeIn');
+        // profilepic.remove();
+        
+
+    }
+}
+
+function closebar() {
+    let hihu = document.querySelector('.menu-data');
+    let element = document.getElementById('Menu-bar');
+    if (hihu) {
+        hihu.classList.remove('animate__fadeIn');
+        hihu.style.zIndex = '-20';
+        element.style.display = 'block';
+        hihu.classList.add('animate__fadeOut');
+    }
+}
+    </script>
+</head>
+<body>
+    <section class="nav-section">
+        <nav class="navbar">
+            <div class="nav-container">
+                <img src="/src/iitram_logo_only-removebg-preview.png" class="Logo">
+                <div id="menu-time" class="menu-data animate__animated ">
+                    <a onclick="closebar()"><i id="close" class="size fa-solid fa-xmark"></i></a>
+                    <a href="/html/index.html">Home</a>
+                    <a href="/html/mysubject.html">My Subject</a>
+                    <a href="/html/aboutUs.html">About Us</a>
+                    <a href="#"  class="ContactPage">Contact Us</a>
+                    
+                    <div class="profilePic" id="profilePic"><a href="/html/profile.html"><img src="https://tse4.mm.bing.net/th?id=OIP.Zmki3GIiRk-XKTzRRlxn4QHaER&pid=Api&P=0&h=180" alt="">Setting</a></div>
+                    
+                </div>
+                <a id="Menu-bar" onclick="menubar()"><i class="size-icon fa-solid fa-bars"></i></a>
+            </div>
+        </nav>
+        
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Contact Us</h1>
+            <p>We’re here to help and answer any questions you might have. Please don’t hesitate to get in touch with us!</p>
+
+               <p> If you’re facing issues, have a suggestion, or want to provide feedback about our question bank, fill out the form below, and we’ll get back to you as soon as possible.</p>
+            <a href="#" class="cta" onclick="showForm()">Contact</a>
+            <p>Click on Contact to fill the below form .</p>
+        </div>
+        <img src="/src/contactuspage.webp" alt="Contact Illustration">
+    </div>
+
+    <div class="container">
+        <h1>Contact Us</h1>
+        <form >
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Your Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Your Message</label>
+                <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="button">Send Message</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="content">
+        <h2>How to Reach Us</h2>
+        <p><strong>Customer Support Email:</strong> <a href="mailto:supportqbanker@gmail.com">supportqbanker@gmail.com</a><br>
+        For immediate assistance, you can email us directly.</p>
+
+        <p><strong>Hours of Operation:</strong><br>
+        Monday - Friday: 9 AM to 6 PM (Local Time)<br>
+        We strive to respond to all inquiries within 24-48 hours.</p>
+
+        <p><strong>Feedback & Suggestions:</strong><br>
+        Do you have ideas on how we can improve? We’d love to hear your thoughts! Use the form to share your feedback.</p>
+
+        <h2>Why Contact Us?</h2>
+        <ul>
+            <li>To get help resolving technical issues or bugs.</li>
+            <li>For account-related questions.</li>
+            <li>To report errors or inaccuracies in the content.</li>
+            <li>To share suggestions for improvement.</li>
+            <li>To collaborate or partner with us.</li>
+        </ul>
+
+        <p>Our goal is to ensure you have the best experience using our platform! Let’s work together to make learning simple, engaging, and stress-free.</p>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Q-Banker. All Rights Reserved.</p>
+    </footer>
+        </section>
+
+</body>
+</html>

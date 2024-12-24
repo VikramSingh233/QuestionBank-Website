@@ -1,0 +1,140 @@
+:root {
+    --primary-color: #2c3e50; /* Dark slate blue */
+    --secondary-color: #3498db; /* Vibrant blue */
+    --light-color: #ecf0f1; /* Light gray */
+    --hover-color: #2980b9; /* Deep blue for hover */
+    --text-color: #34495e; /* Neutral text color */
+    --text-light: #7f8c8d; /* Light text color */
+    --social-color: #bdc3c7; /* Muted social color */
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--light-color);
+    color: var(--text-color);
+  }
+  
+  /* Navbar */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: var(--primary-color);
+    color: var(--light-color);
+  }
+  
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .subject-info h2,
+  .subject-info p {
+    margin: 0;
+    margin-right: 30px; /* Adds space between subject info and buttons */
+  }
+  
+  .menu-data {
+    display: flex;
+    gap: 10px; /* Ensures consistent spacing between buttons */
+  }
+  
+  .menu-data a {
+    padding: 8px 15px;
+    color: var(--light-color);
+    text-decoration: none;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+  
+  .menu-data a:hover {
+    background-color: var(--hover-color);
+    color: var(--light-color);
+    border-color: var(--light-color);
+  }
+  
+  /* Form Section */
+  .form-section {
+    max-width: 700px; /* Reduced dropdown size */
+    margin: 30px auto;
+    padding: 20px;
+    background-color: var(--light-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: none;
+  }
+  
+  .form h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+  }
+  
+  .form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    color: var(--text-color);
+  }
+  
+  .form input,
+  .form select,
+  .form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid var(--social-color);
+    border-radius: 5px;
+    background-color: #fff;
+    color: var(--text-color);
+    font-weight: bold; /* Increased font weight */
+    font-size: 1rem; /* Increased font size slightly */
+    transition: border-color 0.3s ease;
+  }
+  
+  .form input:focus,
+  .form select:focus,
+  .form textarea:focus {
+    border-color: var(--secondary-color);
+    outline: none;
+  }
+  
+  .form .submit-btn {
+    background-color: var(--secondary-color);
+    color: var(--light-color);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .form .submit-btn:hover {
+    background-color: var(--hover-color);
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  .additional-fields {
+    margin-top: 15px;
+  }
+  
+  #image-upload {
+    margin-top: 15px;
+  }
+  
+  /* Reduce overall dropdown spacing */
+  select#question-type {
+    max-width: 80%; /* Smaller dropdown width */
+  }
+  
