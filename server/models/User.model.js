@@ -17,6 +17,7 @@ const userSchema = new Schema(
         lowercase:true
     },
     password:{
+        type:String,
         required:[true,"Password is required"]
     },
     profilePic:{
@@ -39,13 +40,15 @@ const userSchema = new Schema(
 }
 
 );
-userSchema.pre("save",async function (next){
-    if(!this.modified("password")) return next();
-    this.password = bcrypt.hash(this.password,10)
-
-
-    next()
-})
+userSchema.pre("save", async function (next) {
+    if (!this.isModified("password")) return next(); // Only hash if password is modified
+    try {
+        this.password = await bcrypt.hash(this.password, 10); // Wait for the hashing to complete
+        next(); // Only call next() after the hash completes
+    } catch (error) {
+        next(error); // Pass any error to the error handler
+    }
+});
 
 userSchema.methods.isPasswordCorrect = async function(passord){
    return  await bcrypt.compare(password,this.password)

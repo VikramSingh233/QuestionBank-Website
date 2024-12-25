@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Q-Banker Login</title>
-    <link rel="stylesheet" href="/faltu folder but kaam aayega/css2/login.css" />
+    <link rel="stylesheet" href="/css/login.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
@@ -58,44 +58,42 @@
         <!-- Registration Form -->
         <div class="form signup">
           <span class="title">Registration</span>
+        
+          <form action="/api/v1/user/register" id="registrationForm">
 
-          <form action="#">
             <div class="input-field">
-              <input type="text" placeholder="Enter your name" required />
-             
+              <input type="text" name="username" placeholder="Enter your name" required />
             </div>
             <div class="input-field">
-              <input type="text" placeholder="Enter your email" required />
-              
+              <input type="email" name="email" placeholder="Enter your email" required />
             </div>
             <div class="input-field">
-              <input type="password" class="password" placeholder="Create a password" required />
-              
+              <input type="password" name="password" class="password" placeholder="Create a password" required />
             </div>
             <div class="input-field">
-              <input type="password" class="password" placeholder="Confirm a password" required />
-             
+              <input type="password" name="confirmpassword" class="password" placeholder="Confirm your password" required />
             </div>
-
+        
             <div class="checkbox-text">
               <div class="checkbox-content">
-                <input type="checkbox" id="termCon" />
-                <label for="termCon" class="text">I accepted all terms and conditions</label>
+                <input type="checkbox" id="termCon" required />
+                <label for="termCon" class="text">I accept all terms and conditions</label>
               </div>
             </div>
-
+        
             <div class="input-field button">
-              <input type="button" value="Signup" />
+              <input type="submit" value="Signup" />
             </div>
           </form>
-
+        
           <div class="login-signup">
-            <span class="text"
-              >Already a member?
+            <span class="text">
+              Already a member?
               <a href="#" class="text login-link">Login Now</a>
             </span>
           </div>
         </div>
+        
       </div>
     </div>
 
