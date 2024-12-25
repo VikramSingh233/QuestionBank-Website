@@ -1,5 +1,5 @@
 import mongoose ,{Schema} from "mongoose";
-
+import mongooseAggregatePaginate from "mongoose-aggregate-paginate-v2";
 const questionSchema = new Schema(
 {
     type:{
@@ -56,5 +56,5 @@ const questionSchema = new Schema(
 },{timestamps:true}
 
 )
-
+userSchema.plugin(mongooseAggregatePaginate)
 export const Question = mongoose.model("Question",questionSchema)

@@ -1,5 +1,5 @@
 import mongoose ,{Schema} from "mongoose";
-
+import mongooseAggregatePaginate from "mongoose-aggregate-paginate-v2";
 const subjectSchema = new Schema(
 {
    subjectName:{
@@ -27,5 +27,5 @@ const subjectSchema = new Schema(
     
 },{timestamps:true}
 );
-
+userSchema.plugin(mongooseAggregatePaginate)
 export const Subject = mongoose.model("Subject",subjectSchema)
