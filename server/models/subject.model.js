@@ -23,15 +23,9 @@ const subjectSchema = new Schema(
             type:String,
         }
    }],
-   createdAt:{
-    type:Date,
-    default:Date.now
-   },
-   updatedAt:{
-    type:Date,
-    default:Date.now
-   }
+
     
-});
+},{timestamps:true}
+);
 
 export const Subject = mongoose.model("Subject",subjectSchema)

@@ -15,7 +15,7 @@ const userSchema = new Schema(
         lowercase:true
     },
     password:{
-        required:true
+        required:[true,"Password is required"]
     },
     profilePic:{
         type:String,
@@ -29,14 +29,11 @@ const userSchema = new Schema(
         type:String,
        }
     }],
-    createdAt:{
-        type:Date,
-        default:Date.now
-    },
-    updatedAt:{
-        type:Date,
-        default:Date.now
+    refreshToken:{
+        type:String
     }
+},{
+    timestamps:true
 }
 
 );
