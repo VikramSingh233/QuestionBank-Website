@@ -20,6 +20,15 @@ const userSchema = new Schema(
     profilePic:{
         type:String,
     },
+    subjects:[{
+       subjectId:{
+        type:Schema.Types.ObjectId,
+        ref:"Subject",
+       },
+       subjectName:{
+        type:String,
+       }
+    }],
     createdAt:{
         type:Date,
         default:Date.now

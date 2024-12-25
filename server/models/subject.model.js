@@ -10,13 +10,18 @@ const subjectSchema = new Schema(
     type:String,
    },
    createdBy:{
-    type:mongoose.Schema.Types.ObjectId,
+    type:Schema.Types.ObjectId,
     ref:"User",
     required:true
    },
    questions:[{ // array of the questions inside the subject
-    type:mongoose.Schema.Types.ObjectId,
-    ref:"Question"
+        questionId:{
+            type:Schema.Types.ObjectId,
+            ref:"Question",
+        },
+        questionText:{
+            type:String,
+        }
    }],
    createdAt:{
     type:Date,
