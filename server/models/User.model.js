@@ -1,0 +1,35 @@
+import mongoose ,{Schema} from "mongoose";
+
+const userSchema = new Schema(
+{
+    username:{
+        type:String,
+        required:true,
+        unique:true,
+        index:true,
+    },
+    email:{
+        type:String,
+        required:true,
+        unique:true,
+        lowercase:true
+    },
+    password:{
+        required:true
+    },
+    profilePic:{
+        type:String,
+    },
+    createdAt:{
+        type:Date,
+        default:Date.now
+    },
+    updatedAt:{
+        type:Date,
+        default:Date.now
+    }
+}
+
+);
+
+export const User = mongoose.model("User",userSchema)
