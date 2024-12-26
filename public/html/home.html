@@ -19,22 +19,21 @@
   <body>
     <section class="nav-section">
       <nav class="navbar">
-          <div class="nav-container">
-              <img src="/src/iitram_logo_only-removebg-preview.png" class="Logo">
-              <div id="menu-time" class="menu-data animate__animated ">
-                  <a onclick="closebar()"><i id="close" class="size fa-solid fa-xmark"></i></a>
-                  <a href="#" class="homePage">Home</a>
-                  <a href="/html/mysubject.html">My Subject</a>
-                  <a href="/html/aboutUs.html">About Us</a>
-                  <a href="/html/ContactUs.html">Contact Us</a>
-                  
-                  <div class="profilePic" id="profilePic"><a href="/html/profile.html"><img src="https://tse4.mm.bing.net/th?id=OIP.Zmki3GIiRk-XKTzRRlxn4QHaER&pid=Api&P=0&h=180" alt=""></a>Setting</div>
-                  
-              </div>
-              <a id="Menu-bar" onclick="menubar()"><i class="size-icon fa-solid fa-bars"></i></a>
-          </div>
-      </nav>
-      <div class="statistics">
+        <div class="nav-container">
+            <img src="/src/iitram_logo_only-removebg-preview.png" class="Logo">
+            <div id="menu-time" class="menu-data animate__animated">
+                <a  onclick="closebar()"><i id="close" class="size fa-solid fa-xmark"></i></a>
+                <a onclick="closebar()"><i id="close" class="size fa-solid fa-xmark"></i></a>
+                <a href="/home">Home</a>
+                <a id="mysubject-link" href="mysubject">My Subject</a>
+                <a id="about-link" href="/about">About Us</a>
+                <a id="contact-link" href="/contact">Contact Us</a>
+                <div class="profilePic" id="profilePic"><a id="profile-link" href="/profile" ><img src="profile_image_url" alt=""></a>Setting</div>
+            </div>
+            <a id="Menu-bar" onclick="menubar()"><i class="size-icon fa-solid fa-bars"></i></a>
+        </div>
+    </nav>
+      <div class="statistics" id="content">
         <div class="stat">
           <h3>Total Subjects</h3>
           <p>5</p>

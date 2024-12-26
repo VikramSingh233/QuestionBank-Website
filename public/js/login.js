@@ -19,27 +19,22 @@ login.addEventListener("click", (e) => {
 });
 
 document.getElementById("registrationForm").addEventListener("submit", function (e) {
-  e.preventDefault(); // Prevent default form submission
-
-  // Get form data manually
+  e.preventDefault();
   const username = document.querySelector('input[name="username"]').value;
   const email = document.querySelector('input[name="email"]').value;
   const password = document.querySelector('input[name="password"]').value;
   const confirmPassword = document.querySelector('input[name="confirmpassword"]').value;
-
-  // Check if all fields are filled
+ console.log(username,email,password,confirmPassword)
   if (!username || !email || !password || !confirmPassword) {
     alert("All fields must be filled out!");
     return;
   }
 
-  // Check if passwords match
   if (password !== confirmPassword) {
     alert("Passwords do not match!");
     return;
   }
 
-  // Create a data object to send to the server
   const data = {
     username,
     email,
@@ -47,13 +42,12 @@ document.getElementById("registrationForm").addEventListener("submit", function 
     confirmPassword
   };
 
-  // Send form data via POST request
   fetch("/api/v1/user/register", {
     method: "POST",
     headers: {
-      "Content-Type": "application/json", // Content type is application/json
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify(data) // Stringify the data before sending
+    body: JSON.stringify(data)
   })
   .then(response => {
     
@@ -62,7 +56,7 @@ document.getElementById("registrationForm").addEventListener("submit", function 
 .then(responseData => {
     if (responseData.success) {
         console.log(responseData.message);
-        window.location.href = '/home';
+        window.location.href = '/loginPage';
     } else {
         alert("Registration failed: " + responseData.message);
     }
@@ -70,6 +64,53 @@ document.getElementById("registrationForm").addEventListener("submit", function 
 .catch(error => {
     console.error("Error:", error);
     alert("There was an error with the registration process.");
+});
+
+});
+
+
+
+document.getElementById("loginForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+  const email = document.querySelector('input[name="emailLogin"]').value;
+  const password = document.querySelector('input[name="passwordLogin"]').value;
+  if ( !email|| !password) {
+    alert("All fields must be filled out!");
+    return;
+  }
+
+
+  // Create a data object to send to the server
+  const data = {
+
+    email,
+    password,
+    
+  };
+  fetch("/api/v1/user/loginUser", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json", 
+    },
+    body: JSON.stringify(data) 
+  })
+  .then(response => {
+    
+    return response.json();
+})
+.then(responseData => {
+    if (responseData.success) {
+        console.log(responseData);
+        const redirectTo = responseData.data.redirectTo || "/";
+        console.log("Redirecting to:", redirectTo);  // Debug log for redirection path
+        window.location.href = redirectTo;
+    } else {
+        alert("Login failed: " + responseData.message);
+    }
+})
+.catch(error => {
+    console.error("Error:", error);
+    alert("There was an error with the login process.");
 });
 
 });

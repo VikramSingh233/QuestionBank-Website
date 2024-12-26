@@ -25,63 +25,37 @@ function closebar() {
         hihu.classList.add('animate__fadeOut');
     }
 }
+function isLoggedIn() {
+    return getCookie('accessToken') !== undefined;
+}
 
+// Function to handle dynamic page navigation
+function navigateTo(url) {
+    // Check if the user is authenticated before allowing access to certain pages
+    if (url !== "/login" && !isLoggedIn()) {
+        // If not logged in, redirect to login page
+        window.location.href = '/login';
+        return;
+    }
 
+    // If logged in or the link is '/login', navigate to the desired route
+    window.location.href = url;
+}
 
+// Function to get a specific cookie (in this case, 'accessToken')
+// Helper function to get cookies (if using cookies for JWT tokens)
+function getCookie(name) {
+    const value = "; " + document.cookie;
+    const parts = value.split("; " + name + "=");
+    if (parts.length == 2) return parts.pop().split(";").shift();
+}
 
-
-
-
-
-
-
-
-// document.getElementById("signup-btn").addEventListener("click",()=>{
-//     document.getElementById("signupFrm").classList.toggle("signupFrmPopup");
-
-//     const signuppopup= document.querySelector('.loginFrmPopup');
-//     if(signuppopup){
-//         document.getElementById("loginFrm").classList.remove("loginFrmPopup");
-//     }
-
-
-// });
-// const checkBox = document.getElementById("checkbox");
-// document.getElementById("signupsubmitBtn").addEventListener("click", () => {
-
-//     if (checkBox.checked) {
-//         document.getElementById("signupFrm").classList.remove("signupFrmPopup");
-//         document.querySelector(".checkTermAndCondition").classList.remove("checkTermAndConditionPopup");
-//     } else {
-//         document.querySelector(".checkTermAndCondition").classList.add("checkTermAndConditionPopup");
-        
-//     }
-// });
-
-
-// document.getElementById("login-btn").addEventListener("click",()=>{
-
-//     document.getElementById("loginFrm").classList.toggle("loginFrmPopup");
-//     const loginpopup= document.querySelector('.signupFrmPopup');
-//     if(loginpopup){
-//         document.getElementById("signupFrm").classList.remove("signupFrmPopup");
-//     }
- 
-   
-// });
-
-// document.getElementById("loginsubmitBtn").addEventListener("click",()=>{
-//     document.getElementById("loginFrm").classList.remove("loginFrmPopup");
-
-// });
-// const getStartedButton = document.getElementById("GetStarted");
-
-        
-//  getStartedButton.addEventListener("click", function() {
-        
-//             getStartedButton.innerText = 'Get Started ->';
-//             console.log("Button clicked!");
-// });
+// Adding event listeners for links in navbar
+document.getElementById("home-link").addEventListener("click", () => navigateTo('/home'));
+document.getElementById("about-link").addEventListener("click", () => navigateTo('/about'));
+document.getElementById("contact-link").addEventListener("click", () => navigateTo('/contact'));
+document.getElementById("profile-link").addEventListener("click", () => navigateTo('/profile'));
+document.getElementById("mysubject-link").addEventListener("click", () => navigateTo('/mysubject'));
 
 
 

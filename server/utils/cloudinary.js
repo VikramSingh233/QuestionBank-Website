@@ -30,6 +30,15 @@ dotenv.config()
         }
     }
 
-    export {uploadCloudinary}
+
+    const  deletefromCloudinary = async (publicId)=>{
+        try {
+           const result =  await cloudinary.uploader.destroy(publicId)
+        } catch (error) {
+            console.log("Error deleting from cloudinary",error)
+            return null
+        }
+    }
+    export {uploadCloudinary,deletefromCloudinary}
     
     

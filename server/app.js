@@ -3,6 +3,12 @@ import cors from "cors";
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import path from 'path';
+import { errorHandler } from './middlewares/error.middleware.js';
+import { verifyJWT } from './middlewares/auth.middleware.js';
+
+
+
+
 const app = express();
 app.use(
     cors({
@@ -28,40 +34,19 @@ app.use(cookieParser())
 //import routes
 import  healthCheckRouter  from './routes/healthcheck.route.js';
 import userRouter from "./routes/user.route.js"
-import { errorHandler } from './middlewares/error.middleware.js';
+import viewsRouter from "./routes/view.route.js";
 
 
 
-//routes
+
+//routes for api
 
 app.use("/api/v1/healthcheck",healthCheckRouter)
 app.use("/api/v1/user",userRouter)
+app.use("/", viewsRouter);
 
- // serving static files 
 
-// Route for login page
-app.get('/login', (req, res) => {
-    const loginPage = path.join(__dirname, 'public', 'html', 'login.html');
-    console.log('Path to login.html:', loginPage);  // Log the final path for debugging
-    res.sendFile(loginPage, (err) => {
-        if (err) {
-            console.error('Error sending login.html:', err);
-            res.status(500).send('Internal Server Error');
-        }
-    });
-});
 
-// Route for home page(index.html)
-app.get('/home', (req, res) => {
-    const homePage = path.join(__dirname, 'public', 'html', 'home.html');
-    console.log('Path to home.html:', homePage);  // Log the final path for debugging
-    res.sendFile(homePage, (err) => {
-        if (err) {
-            console.error('Error sending home.html:', err);
-            res.status(500).send('Internal Server Error');
-        }
-    });
-});
 
 
 app.use(errorHandler)

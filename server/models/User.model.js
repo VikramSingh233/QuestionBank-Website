@@ -2,6 +2,8 @@ import mongoose ,{Schema} from "mongoose";
 import mongooseAggregatePaginate from "mongoose-aggregate-paginate-v2";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+dotenv.config()
 const userSchema = new Schema(
 {
     username:{
@@ -41,16 +43,16 @@ const userSchema = new Schema(
 
 );
 userSchema.pre("save", async function (next) {
-    if (!this.isModified("password")) return next(); // Only hash if password is modified
+    if (!this.isModified("password")) return next(); 
     try {
-        this.password = await bcrypt.hash(this.password, 10); // Wait for the hashing to complete
-        next(); // Only call next() after the hash completes
+        this.password = await bcrypt.hash(this.password, 10);
+        next();
     } catch (error) {
-        next(error); // Pass any error to the error handler
+        next(error);
     }
 });
 
-userSchema.methods.isPasswordCorrect = async function(passord){
+userSchema.methods.isPasswordCorrect = async function(password){
    return  await bcrypt.compare(password,this.password)
 }
 
@@ -61,7 +63,7 @@ userSchema.methods.generateAccessToken = function(){
         _id:this._id,
         email:this.email,
     },
-process.env.ACCESS_TOKEN_SECRET,{expiresIn:ACCESS_TOKEN_EXPIRY}
+process.env.ACCESS_TOKEN_SECRET,{expiresIn:process.env.ACCESS_TOKEN_EXPIRY}
 )
 }
 
@@ -72,7 +74,7 @@ userSchema.methods.generateRefreshToken = function(){
    return  jwt.sign({
         _id:this._id,
     },
-process.env.REFRESH_TOKEN_SECRET,{expiresIn:REFRESH_TOKEN_EXPIRY}
+process.env.REFRESH_TOKEN_SECRET,{expiresIn:process.env.REFRESH_TOKEN_EXPIRY}
 )
 }
 
