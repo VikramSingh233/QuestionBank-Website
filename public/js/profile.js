@@ -1,4 +1,40 @@
 
+
+function isLoggedIn() {
+    return getCookie('accessToken') !== undefined;
+}
+
+// Function to handle dynamic page navigation
+function navigateTo(url) {
+    // Check if the user is authenticated before allowing access to certain pages
+    if (url !== "/login" && !isLoggedIn()) {
+        // If not logged in, redirect to login page
+        window.location.href = '/login';
+        return;
+    }
+
+    // If logged in or the link is '/login', navigate to the desired route
+    window.location.href = url;
+}
+
+// Function to get a specific cookie (in this case, 'accessToken')
+// Helper function to get cookies (if using cookies for JWT tokens)
+function getCookie(name) {
+    const value = "; " + document.cookie;
+    const parts = value.split("; " + name + "=");
+    if (parts.length == 2) return parts.pop().split(";").shift();
+}
+
+// Adding event listeners for links in navbar
+document.getElementById("home-link").addEventListener("click", () => navigateTo('/home'));
+document.getElementById("about-link").addEventListener("click", () => navigateTo('/about'));
+document.getElementById("contact-link").addEventListener("click", () => navigateTo('/contact'));
+// document.getElementById("profile-link").addEventListener("click", () => navigateTo('/profile'));
+document.getElementById("mysubject-link").addEventListener("click", () => navigateTo('/mysubject'));
+
+
+
+
 function menubar() {
     let hihu = document.querySelector('.menu-data');
     let element = document.getElementById('Menu-bar');
@@ -106,4 +142,38 @@ saveChanges.addEventListener('click', () => {
     // Apply changes (update display)
     displayName.textContent = name;
     // alert('Profile updated successfully');
+});
+
+
+
+
+document.getElementById("btn-logout").addEventListener('click', () => {
+    fetch("/api/v1/user/logout", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: 'include' // Important for sending cookies
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(responseData => {
+        if (responseData.success) {
+           
+            window.location.href = '/login';
+            setTimeout(() => {
+                window.location.reload(true);
+            }, 500);
+        } else {
+            alert("Logout failed: " + responseData.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred: ' + error.message);
+    });
 });

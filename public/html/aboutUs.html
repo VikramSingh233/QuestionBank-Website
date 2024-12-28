@@ -18,14 +18,15 @@
           <nav class="navbar">
               <div class="nav-container">
                   <img src="/src/iitram_logo_only-removebg-preview.png" class="Logo">
-                  <div id="menu-time" class="menu-data animate__animated ">
-                      <a onclick="closebar()"><i id="close" class="size fa-solid fa-xmark"></i></a>
-                      <a href="/html/index.html">Home</a>
-                      <a href="/html/mysubject.html">My Subject</a>
-                      <a href="#"class="aboutusPage">About Us</a>
-                      <a href="/html/ContactUS.html">Conatct Us</a>
-                      
-                      <div class="profilePic" id="profilePic"><a href="/html/profile.html"><img src="https://tse4.mm.bing.net/th?id=OIP.Zmki3GIiRk-XKTzRRlxn4QHaER&pid=Api&P=0&h=180" alt=""></a>Setting</div>
+                  <div id="menu-time" class="menu-data animate__animated">
+                    <a  onclick="closebar()"><i id="close" class="size fa-solid fa-xmark"></i></a>
+                    <a onclick="closebar()"><i id="close" class="size fa-solid fa-xmark"></i></a>
+                    <a id="home-link" href="/home">Home</a>
+                    <a id="mysubject-link" href="/mysubject">My Subject</a>
+                    <a href="/about">About Us</a>
+                    <a id="contact-link" href="/contact">Contact Us</a>
+                    <div class="profilePic" id="profilePic"><a id="profile-link" href="/profile" ><img src="profile_image_url" alt=""></a>Setting</div>
+                </div>
                       
                   </div>
                   <a id="Menu-bar" onclick="menubar()"><i class="size-icon fa-solid fa-bars"></i></a>
@@ -158,6 +159,40 @@ function closebar() {
         hihu.classList.add('animate__fadeOut');
     }
 }
+
+function isLoggedIn() {
+    return getCookie('accessToken') !== undefined;
+}
+
+// Function to handle dynamic page navigation
+function navigateTo(url) {
+    // Check if the user is authenticated before allowing access to certain pages
+    if (url !== "/login" && !isLoggedIn()) {
+        // If not logged in, redirect to login page
+        window.location.href = '/login';
+        return;
+    }
+
+    // If logged in or the link is '/login', navigate to the desired route
+    window.location.href = url;
+}
+
+// Function to get a specific cookie (in this case, 'accessToken')
+// Helper function to get cookies (if using cookies for JWT tokens)
+function getCookie(name) {
+    const value = "; " + document.cookie;
+    const parts = value.split("; " + name + "=");
+    if (parts.length == 2) return parts.pop().split(";").shift();
+}
+
+// Adding event listeners for links in navbar
+document.getElementById("home-link").addEventListener("click", () => navigateTo('/home'));
+document.getElementById("about-link").addEventListener("click", () => navigateTo('/about'));
+document.getElementById("contact-link").addEventListener("click", () => navigateTo('/contact'));
+document.getElementById("profile-link").addEventListener("click", () => navigateTo('/profile'));
+document.getElementById("mysubject-link").addEventListener("click", () => navigateTo('/mysubject'));
+
+
 </script>
 
 

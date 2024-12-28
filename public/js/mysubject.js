@@ -1,8 +1,39 @@
+function isLoggedIn() {
+  return getCookie('accessToken') !== undefined;
+}
+
+// Function to handle dynamic page navigation
+function navigateTo(url) {
+  // Check if the user is authenticated before allowing access to certain pages
+  if (url !== "/login" && !isLoggedIn()) {
+      // If not logged in, redirect to login page
+      window.location.href = '/login';
+      return;
+  }
+
+  // If logged in or the link is '/login', navigate to the desired route
+  window.location.href = url;
+}
+
+// Function to get a specific cookie (in this case, 'accessToken')
+// Helper function to get cookies (if using cookies for JWT tokens)
+function getCookie(name) {
+  const value = "; " + document.cookie;
+  const parts = value.split("; " + name + "=");
+  if (parts.length == 2) return parts.pop().split(";").shift();
+}
+
+// Adding event listeners for links in navbar
+document.getElementById("home-link").addEventListener("click", () => navigateTo('/home'));
+document.getElementById("about-link").addEventListener("click", () => navigateTo('/about'));
+document.getElementById("contact-link").addEventListener("click", () => navigateTo('/contact'));
+document.getElementById("profile-link").addEventListener("click", () => navigateTo('/profile'));
+// document.getElementById("mysubject-link").addEventListener("click", () => navigateTo('/mysubject'));
+
 
     // get element by classname return a html collection so we can not use classlist , if you want to use you have to do looping
 
-
-    downloadSubjectPdfContainer = document.getElementById("DownloadPopupContainer")
+downloadSubjectPdfContainer = document.getElementById("DownloadPopupContainer")
         document.addEventListener("DOMContentLoaded", () => {
           const openButton = document.querySelector(".AddSubject");
           const closeButton = document.querySelector(".close-popup-btn");
@@ -114,6 +145,28 @@ if(SubjectName.length<=0 || TeacherName.length<=0){
         SubjectNameForDownloadBox.appendChild(SubjectNameForDownload)
         SubjectNameForDownloadBox.appendChild(SubjectButtonForDownload)
         SubjectNameForDownloadBox.appendChild(SubjectButtonForEdit)
+
+
+
+        fetch('/mySubject/AddSubject', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+              subjectName: SubjectName,
+              teacherName: TeacherName
+          })
+      })
+          .then(response => response.json())
+          .then(data => {
+              
+              if (data.success) {
+              }
+              else {
+              }
+              
+          })
         closePopup();
       }
     
@@ -138,6 +191,5 @@ window.addEventListener("click", (e) => {
     popupDownloadContainer.style.display = "none";
   }
 });
-
 
 

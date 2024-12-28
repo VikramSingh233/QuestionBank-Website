@@ -31,7 +31,7 @@ document.getElementById("registrationForm").addEventListener("submit", function 
   }
 
   if (password !== confirmPassword) {
-    alert("Passwords do not match!");
+    document.querySelector('input[name="confirmpassword"]').placeholder="Confirm Password not matched with Password";
     return;
   }
 
@@ -55,8 +55,7 @@ document.getElementById("registrationForm").addEventListener("submit", function 
 })
 .then(responseData => {
     if (responseData.success) {
-        console.log(responseData.message);
-        window.location.href = '/loginPage';
+        window.location.href = '/login';
     } else {
         alert("Registration failed: " + responseData.message);
     }

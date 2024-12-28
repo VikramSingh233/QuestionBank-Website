@@ -5,8 +5,6 @@ import { registerUser , loginUser,logoutUser} from "../controllers/user.controll
 const router = Router()
 router.route("/register").post(registerUser)
 router.route("/loginUser").post(loginUser)
-
-
 router.route("/logout").post(verifyJWT,logoutUser)
 
 export default router

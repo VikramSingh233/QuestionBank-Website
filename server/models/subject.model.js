@@ -27,5 +27,5 @@ const subjectSchema = new Schema(
     
 },{timestamps:true}
 );
-userSchema.plugin(mongooseAggregatePaginate)
+// userSchema.plugin(mongooseAggregatePaginate)
 export const Subject = mongoose.model("Subject",subjectSchema)

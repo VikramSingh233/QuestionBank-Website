@@ -118,6 +118,11 @@ const refreshAccessToken = asyncHandler(async (req,res)=>{
         throw new ApiError(401,"Refresh Token is required")
     }
     try {
+
+// Decodes and verifies the refresh token using the secret key (REFRESH_TOKEN_SECRET).
+// Returns the payload of the refresh token (e.g., user ID) if valid.
+// If Invalid:
+// If the token is expired or tampered with, an error will be thrown by jwt.verify.
        const decodedToken =  jwt.verify(
             incomingRefreshToken,
             process.env.REFRESH_TOKEN_SECRET,
@@ -138,30 +143,38 @@ const refreshAccessToken = asyncHandler(async (req,res)=>{
 
         const {accessToken,refreshToken:newRefreshToken}=await generateAccessAndRefreshToken(user._id)
 
-        return res.status(200).cookie("accessToken",accessToken,options).cookie("refreshToken",refreshToken,options).json(new ApiResponse(200,{accessToken,refreshToken:newRefreshToken},"Access token refreshed successfully"))
+        return res.status(200)
+        .cookie("accessToken",accessToken,options)
+        .cookie("refreshToken",refreshToken,options)
+        .json(new ApiResponse(200
+            ,{accessToken,refreshToken:newRefreshToken}
+            ,"Access token refreshed successfully"))
     } catch (error) {
         throw new ApiError(500,"Something went wrong while refreshing access token")
     }
 })
 
-const logoutUser = asyncHandler(async (req,res)=>{
-    await User.findByIdAndUpdate(
-        req.user._id,
-        {
-            $set:{
-                refreshToken:undefined,
-            }
-        },
-        {new:true}
-    )
 
-    const options = {
-        httpOnly:true,
-        secure:process.env.NODE_ENV="production",
-    }
+const logoutUser = asyncHandler(async (req, res) => {
+    // console.log("User logging out:", req.user)
+    // Invalidate user's refresh token
+    await User.findByIdAndUpdate(req.user._id, {
+        $unset: { refreshToken: "" }
+    });
 
-    return res.status(200).clearCookie("accessToken",options).clearCookie("refreshToken",options).json(new ApiResponse(200,"User logged out successfully"))
-})
+    // Clear cookies with proper options
+    const cookieOptions = {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "strict",
+    };
+
+    res.clearCookie("accessToken", cookieOptions)
+       .clearCookie("refreshToken", cookieOptions)
+       .status(200)
+       .json(new ApiResponse(200, "User logged out successfully"));
+});
+
 
 const updateUserDetails= asyncHandler(async (req,res)=>{
 
@@ -189,5 +202,6 @@ export {
     registerUser,
     loginUser,
     refreshAccessToken,
-    logoutUser
+    logoutUser,
+    chsngeUserPassword
 }

@@ -51,7 +51,7 @@ function getCookie(name) {
 }
 
 // Adding event listeners for links in navbar
-document.getElementById("home-link").addEventListener("click", () => navigateTo('/home'));
+// document.getElementById("home-link").addEventListener("click", () => navigateTo('/home'));
 document.getElementById("about-link").addEventListener("click", () => navigateTo('/about'));
 document.getElementById("contact-link").addEventListener("click", () => navigateTo('/contact'));
 document.getElementById("profile-link").addEventListener("click", () => navigateTo('/profile'));
