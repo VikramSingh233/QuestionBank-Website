@@ -1,10 +1,10 @@
 import mongoose ,{Schema} from "mongoose";
 import mongooseAggregatePaginate from "mongoose-aggregate-paginate-v2";
+
 const questionSchema = new Schema(
 {
     type:{
         type:String,
-        enum:["MCQ","Descriptive"],
         required:true,
     },
     question:{
@@ -56,5 +56,5 @@ const questionSchema = new Schema(
 },{timestamps:true}
 
 )
-userSchema.plugin(mongooseAggregatePaginate)
+// userSchema.plugin(mongooseAggregatePaginate)
 export const Question = mongoose.model("Question",questionSchema)

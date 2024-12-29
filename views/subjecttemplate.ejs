@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Question Bank - <%= subjectName %></title>
+  <link rel="stylesheet" href="/css/subjectMatarial.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <div class="nav-section">
+    <div class="navbar">
+      <div class="nav-container">
+        <div class="subject-info">
+          <h2 id="subject-name"><%= subjectName %></h2>
+          <p id="teacher-name">Prof. <%= teacherName %></p>
+        </div>
+        <div class="menu-data">
+          <a href="#" id="add-question-btn">Add Question</a>
+          <a href="#">View Questions</a>
+          <a href="#">Download Questions</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Question Form -->
+  <div class="form-section" id="form-section">
+    <form id="question-form" class="form" action="/addQuestion/<%= subjectId %>" method="POST" enctype="multipart/form-data">
+      <h3>Add Question</h3>
+      <label for="question-type">Select Question Type:</label>
+      <select id="question-type" name="questionType" required>
+        <option value="" disabled selected>Select...</option>
+        <option value="mcq">MCQ</option>
+        <option value="descriptive">Descriptive</option>
+      </select>
+      
+      <!-- Common Question Fields -->
+      <div id="common-fields">
+        <label for="question">Question:</label>
+        <textarea id="question" name="question" placeholder="Enter the question" required></textarea>
+      </div>
+
+      <!-- MCQ-Specific Fields -->
+      <div id="mcq-fields" class="additional-fields hidden">
+        <label for="option-a">Option A:</label>
+        <input type="text" id="option-a" name="optionA" placeholder="Option A">
+        <label for="option-b">Option B:</label>
+        <input type="text" id="option-b" name="optionB" placeholder="Option B">
+        <label for="option-c">Option C:</label>
+        <input type="text" id="option-c" name="optionC" placeholder="Option C">
+        <label for="option-d">Option D:</label>
+        <input type="text" id="option-d" name="optionD" placeholder="Option D">
+        <label for="correct-answer">Correct Answer:</label>
+        <select id="correct-answer" name="correctAnswer">
+          <option value="" disabled selected>Select...</option>
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+          <option value="D">D</option>
+        </select>
+      </div>
+
+      <!-- Additional Fields -->
+      <div id="additional-fields">
+        <label for="solution">Solution:</label>
+        <textarea id="solution" name="solution" placeholder="Enter solution"></textarea>
+        <label for="topic-name">Topic Name:</label>
+        <input type="text" id="topic-name" name="topicName" placeholder="Enter topic name">
+        <label for="tag-name">Tag Name:</label>
+        <input type="text" id="tag-name" name="tagName" placeholder="Enter tag name">
+        <label for="marks">Marks:</label>
+        <input type="number" id="marks" name="marks" placeholder="Enter marks">
+      </div>
+
+      <!-- Upload Image Field -->
+      <div id="image-upload">
+        <label for="question-image">Upload Image (optional):</label>
+        <input type="file" id="question-image" name="questionImage" accept="image/*">
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="submit-btn">Submit</button>
+    </form>
+  </div>
+
+  <script src="/js/subjectMatarial.js"></script>
+</body>
+</html>

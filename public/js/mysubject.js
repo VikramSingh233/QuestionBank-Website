@@ -28,7 +28,7 @@ document.getElementById("home-link").addEventListener("click", () => navigateTo(
 document.getElementById("about-link").addEventListener("click", () => navigateTo('/about'));
 document.getElementById("contact-link").addEventListener("click", () => navigateTo('/contact'));
 document.getElementById("profile-link").addEventListener("click", () => navigateTo('/profile'));
-// document.getElementById("mysubject-link").addEventListener("click", () => navigateTo('/mysubject'));
+document.getElementById("subject-matarial-link").addEventListener("click", () => navigateTo('/subjectmatarial'));
 
 
     // get element by classname return a html collection so we can not use classlist , if you want to use you have to do looping
@@ -192,4 +192,12 @@ window.addEventListener("click", (e) => {
   }
 });
 
+
+
+
+
+
+
+
+// redirection ot the various subject according to their name;
 

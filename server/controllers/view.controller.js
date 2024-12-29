@@ -1,7 +1,8 @@
 import path from 'path';
 import { ApiError } from '../utils/ApiError.js';  // Custom error handling utility
 import { User } from '../models/User.model.js';
-import {Subject} from '../models/subject.model.js'
+import {Subject} from '../models/subject.model.js';
+import {Question} from '../models/question.model.js';
 const __dirname = path.resolve(); 
 // Render Home Page
 export const renderHomePage = (req, res) => {
@@ -48,6 +49,8 @@ export const renderMySubjectPage = (req, res) => {
     }
 };
 
+
+
 // Render Login Page (this page does not require authentication)
 export const renderLoginPage = (req, res) => {
     try {
@@ -59,38 +62,114 @@ export const renderLoginPage = (req, res) => {
     }
 };
 
-
-export const renderSubjectPage = async (req, res) => {
+export const getSubjectDetails = async (req, res) => {
     try {
-        const { subject } = req.params; // Extract the subject from the request parameters
-        const userId = req.user._id; // Assume user ID is populated by middleware
-
-        // Fetch the user and their subjects
-        const user = await User.findById(userId).populate("subjects.subjectId");
+        const userId = req.user._id; // User ID from JWT middleware
+        const subjectName = req.params.subject; // Extract the subject name from the URL
+        // console.log("Subject Name:", subjectName);
+        // Fetch the user and populate their subjects and questions
+        const user = await User.findById(userId)
+            .populate({
+                path: "subjects.subjectId",
+                populate: {
+                    path: "questions.questionId",
+                },
+            });
 
         if (!user) {
-            throw new ApiError(404, "User not found");
+            return res.status(404).json({ message: "User not found" });
         }
 
-        // Check if the subject exists in the user's subjects
+        // Find the requested subject in the user's subjects
         const userSubject = user.subjects.find(
-            (sub) => sub.subjectName.toLowerCase() === subject.toLowerCase()
+            (sub) => sub.subjectName.toLowerCase() === subjectName.toLowerCase()
         );
-
         if (!userSubject) {
-            return res.status(404).json({ message: "Subject not found for this user" });
+            return res.status(404).json({ message: "Subject not found in user's list" });
         }
 
-        console.log(`User ID: ${userId}, Subject: ${userSubject.subjectName}`);
+        // Fetch the full subject details from the database
+        const subjectDetails = await Subject.findById(userSubject.subjectId._id)
+            .populate("questions.questionId");
+        if (!subjectDetails) {
+            return res.status(404).json({ message: "Subject not found in the database" });
+        }
 
-        // Serve the HTML file
-        res.sendFile(path.join(__dirname, "..", "public", "html", "subjectMaterial.html"));
+        // Prepare data for rendering
+        const dataToRender = {
+            subjectName: subjectDetails.subjectName,
+            subjectId: subjectDetails._id,
+            teacherName: subjectDetails.teacherName || "Unknown Teacher", // Default if not present
+            questions: subjectDetails.questions.map((q) => ({
+                text: q.questionId.question,
+                marks: q.questionId.mark || "N/A",
+                topic: q.questionId.topicName || "N/A",
+                tags: q.questionId.tagName || "N/A",
+            })),
+        };
+        // Render the EJS template
+        res.status(200).render("subjecttemplate", dataToRender); // Use "subject.template" here
     } catch (error) {
-        console.error("Error loading the Subject page:", error); // Log error details for debugging
-        throw new ApiError(500, "Error loading the Subject page");
+        console.error("Error retrieving subject details:", error);
+        res.status(500).json({ message: "Error retrieving subject details", error });
     }
 };
 
+
+
+
+export const AddQuestion = async (req, res) => {
+    try {
+        const questionData = JSON.parse(req.body.data);
+        const { type, question, solution, topicName, tagName, mark, options, subject: subjectName } = questionData;
+
+        // console.log("Parsed question data:", questionData);
+        if (!type || !question || !topicName || !tagName || !mark || !subjectName) {
+            return res.status(400).json({ success: false, message: "All required fields must be filled." });
+        }
+        const subject = await Subject.findOne({ subjectName: subjectName.trim() });
+
+        if (!subject) {
+            return res.status(404).json({ success: false, message: "Subject not found." });
+        }
+        if (type === "mcq" && (!options || options.length === 0)) {
+            return res.status(400).json({ success: false, message: "Options must be provided for MCQ questions." });
+        }
+
+        options.forEach((opt) => {
+            if (!opt.option || typeof opt.isCorrect !== "boolean") {
+                return res.status(400).json({ success: false, message: "Invalid option format." });
+            }
+        });
+        const newQuestion = {
+            type,
+            question,
+            solution,
+            options,
+            topicName,
+            tagName,
+            mark: parseInt(mark, 10),
+            subject: subject._id,
+            createdBy: req.user._id,
+        };
+
+        // Save the question
+        const createdQuestion = await Question.create(newQuestion);
+        await createdQuestion.save();
+
+        // Add question to subject's questions array
+        subject.questions.push({ questionId: createdQuestion._id, questionText: createdQuestion.question });
+        await subject.save();
+
+        res.status(201).json({ success: true, message: "Question added successfully!", question: createdQuestion });
+    } catch (error) {
+        console.error("Error Adding Question:", error);
+        res.status(500).json({ success: false, message: "Error adding question.", error });
+    }
+};
+
+
+  
 
 export const AddnewSubject = async (req, res) => {
     const { subjectName, teacherName } = req.body;

@@ -5,9 +5,10 @@ import bodyParser from 'body-parser';
 import path from 'path';
 import { errorHandler } from './middlewares/error.middleware.js';
 import { verifyJWT } from './middlewares/auth.middleware.js';
+import { Question } from './models/question.model.js';
 
-
-
+import multer from 'multer';
+const upload = multer();
 
 const app = express();
 app.use(
@@ -22,7 +23,10 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(express.static("public"));
 const __dirname = path.resolve();  // Using the correct root path resolution
+app.set('view engine', 'ejs');
 
+
+app.set('views', path.join(__dirname, 'views'));
 // Serve static files correctly from 'public' folder
 app.use('/css', express.static(path.join(__dirname, 'public', 'css')));   // CSS files from 'public/css'
 app.use('/js', express.static(path.join(__dirname, 'public', 'js')));     // JS files from 'public/js'
