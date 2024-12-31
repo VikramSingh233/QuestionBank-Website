@@ -107,11 +107,10 @@ body {
 }
 
 .input-field input:focus {
-    box-shadow: 0 0 5px rgba(52, 152, 219, 0.7);  /* Light blue focus shadow */
-    border-color: #3498db;  /* Soft blue border when focused */
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.7);  
+    border-color: #3498db; 
 }
 
-/* Checkbox and label styling */
 .form .checkbox-text {
     display: flex;
     width: 280px;
@@ -141,7 +140,11 @@ body {
     color: #FF6F61;  /* Coral for links to make them more vibrant */
     text-decoration: none;
 }
-
+#forgotPassword{
+    color: #FF6F61;
+    text-decoration: none;
+    cursor: pointer;
+}
 .form a:hover {
     text-decoration: underline;
 }

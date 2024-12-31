@@ -362,29 +362,30 @@ padding: 10px;
     padding: 5px;
     display: grid;
     
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(5,1fr);
     gap:10px;
-    grid-auto-rows: minmax(200px, auto);
+    grid-auto-rows: minmax(100px, auto);
   }
-
-  .item{
+  .item {
     border: 3px solid black;
     cursor: pointer;
     border-radius: 15px;
     text-align: center;
-font-size: 26px;
-font-weight: 800;
-display: flex;
-flex-wrap: wrap;
-flex-direction: row;
-justify-content: center;
-align-items: center;
-background-size: cover;
-background-position: center;
-background-repeat: no-repeat;
-opacity: 0.9;
+    font-size: 26px;
+    font-weight: 800;
+    display: flex;
+    flex-direction: column; /* For proper vertical alignment */
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.9;
+    width: 100%; /* Ensure it stretches to the grid cell width */
+    height: 100%; /* Ensure it stretches to the grid cell height */
+    box-sizing: border-box; /* Includes border size in the dimensions */
+}
 
-    }
     
 
   @media (max-width: 500px) {
@@ -482,19 +483,19 @@ opacity: 0.9;
 
 
 .downloadpopupContainer {
-  display: none; 
-  position: fixed;
-  top: 0;
+  display: flex; 
+  position: absolute;
+  top: 40%;
   left: 0;
-  width: 100%;
-  height: 100%;
   overflow-y: scroll;
-  background-color: rgba(0, 0, 0, 0.5); 
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 1;
 }
 
+.downloadpopupContainer::-webkit-scrollbar {
+  display: none;
+}
 
 .download-popup-content {
   background-color:var(--light-color); 
@@ -507,18 +508,18 @@ opacity: 0.9;
 }
 
 
-.closeDownloadPopup {
+/* .closeDownloadPopup {
   position: absolute;
   top: 10px;
   right: 15px;
   font-size: 24px;
   color: #555;
   cursor: pointer;
-}
-
+} */
+/* 
 .closeDownloadPopup:hover {
   color: #000;
-}
+} */
 
 
 
@@ -579,7 +580,7 @@ width: 20%;
 
 }
 
-.SubjectButtonForEdit{
+.SubjectButtonForView{
   position: relative;
   width: 15%;
     background-color: #ffffff;
@@ -593,7 +594,7 @@ width: 20%;
     transition: ease-in-out 200ms;
   
   }
-  .SubjectButtonForEdit:hover{
+  .SubjectButtonForView:hover{
     background-color: #1f1f1f;
     color: rgb(255, 255, 255);
     /* border: 2px solid rgb(238, 161, 161); */

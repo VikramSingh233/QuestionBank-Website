@@ -49,6 +49,17 @@ export const renderMySubjectPage = (req, res) => {
     }
 };
 
+export const renderForgotPasswordPage = (req, res) => {
+    try {
+        res.sendFile(path.join(__dirname, 'public', "html",'forgotPassword.html'));  // Path to My Subjects page
+    } catch (error) {
+        throw new ApiError(500, "Error loading the My Subjects page", error);
+    }
+};
+
+
+
+
 
 
 // Render Login Page (this page does not require authentication)
@@ -62,12 +73,28 @@ export const renderLoginPage = (req, res) => {
     }
 };
 
-export const getSubjectDetails = async (req, res) => {
+
+
+export const getSubjects=async(req,res)=>{
     try {
         const userId = req.user._id; // User ID from JWT middleware
-        const subjectName = req.params.subject; // Extract the subject name from the URL
-        // console.log("Subject Name:", subjectName);
-        // Fetch the user and populate their subjects and questions
+        const user = await User.findById(userId);
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        const subjects = user.subjects;
+        const username = user.username;
+        res.status(200).json({ subjects , username });
+    } catch (error) {
+        console.error("Error retrieving subjects:", error);
+        res.status(500).json({ message: "Error retrieving subjects", error });
+    }
+}
+export const getSubjectDetails = async (req, res) => {
+    try {
+        const userId = req.user._id; 
+        const subjectName = req.params.subject; 
+
         const user = await User.findById(userId)
             .populate({
                 path: "subjects.subjectId",
@@ -99,7 +126,7 @@ export const getSubjectDetails = async (req, res) => {
         const dataToRender = {
             subjectName: subjectDetails.subjectName,
             subjectId: subjectDetails._id,
-            teacherName: subjectDetails.teacherName || "Unknown Teacher", // Default if not present
+            teacherName: subjectDetails.teacherName || "Unknown Teacher",
             questions: subjectDetails.questions.map((q) => ({
                 text: q.questionId.question,
                 marks: q.questionId.mark || "N/A",
@@ -108,7 +135,7 @@ export const getSubjectDetails = async (req, res) => {
             })),
         };
         // Render the EJS template
-        res.status(200).render("subjecttemplate", dataToRender); // Use "subject.template" here
+        res.status(200).render("subjecttemplate", dataToRender); 
     } catch (error) {
         console.error("Error retrieving subject details:", error);
         res.status(500).json({ message: "Error retrieving subject details", error });
@@ -127,8 +154,8 @@ export const AddQuestion = async (req, res) => {
         if (!type || !question || !topicName || !tagName || !mark || !subjectName) {
             return res.status(400).json({ success: false, message: "All required fields must be filled." });
         }
-        const subject = await Subject.findOne({ subjectName: subjectName.trim() });
 
+        const subject = await Subject.findOne({ subjectName: decodeURIComponent(subjectName).trim() });
         if (!subject) {
             return res.status(404).json({ success: false, message: "Subject not found." });
         }

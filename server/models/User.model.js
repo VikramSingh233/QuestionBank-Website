@@ -18,6 +18,9 @@ const userSchema = new Schema(
         unique:true,
         lowercase:true
     },
+    oldPassword:{
+        type:String
+    },
     password:{
         type:String,
         required:[true,"Password is required"]
@@ -46,6 +49,7 @@ userSchema.pre("save", async function (next) {
     if (!this.isModified("password")) return next(); 
     try {
         this.password = await bcrypt.hash(this.password, 10);
+        this.oldPassword = await bcrypt.hash(this.password, 10);
         next();
     } catch (error) {
         next(error);

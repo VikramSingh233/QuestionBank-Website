@@ -4,8 +4,7 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import path from 'path';
 import { errorHandler } from './middlewares/error.middleware.js';
-import { verifyJWT } from './middlewares/auth.middleware.js';
-import { Question } from './models/question.model.js';
+
 
 import multer from 'multer';
 const upload = multer();
@@ -40,7 +39,7 @@ import  healthCheckRouter  from './routes/healthcheck.route.js';
 import userRouter from "./routes/user.route.js"
 import viewsRouter from "./routes/view.route.js";
 
-
+import feedback from './routes/feedback.route.js';
 
 
 //routes for api
@@ -48,6 +47,7 @@ import viewsRouter from "./routes/view.route.js";
 app.use("/api/v1/healthcheck",healthCheckRouter)
 app.use("/api/v1/user",userRouter)
 app.use("/", viewsRouter);
+app.use("/feedback",feedback)
 
 
 

@@ -113,3 +113,10 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
 });
 
 });
+
+
+
+document.getElementById("forgotPassword").addEventListener("click", function () {
+  window.location.href = '/forgotPassword';
+
+})

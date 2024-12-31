@@ -5,75 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us</title>
     <link rel="stylesheet" href="/css/ContactUs.css">
-    <script>
-        function showForm() {
-            document.querySelector('.container').style.display = 'block';
-            window.scrollTo(0, document.body.scrollHeight);
-        }
 
-        
-function menubar() {
-    let hihu = document.querySelector('.menu-data');
-    let element = document.getElementById('Menu-bar');
-    // let profilepic = document.getElementById("profilePic");
-
-
-    if (hihu) {
-        hihu.classList.remove('animate__fadeOut');
-        element.style.display = 'none';
-        hihu.style.zIndex = '1';
-        hihu.classList.add('animate__fadeIn');
-        // profilepic.remove();
-        
-
-    }
-}
-
-function closebar() {
-    let hihu = document.querySelector('.menu-data');
-    let element = document.getElementById('Menu-bar');
-    if (hihu) {
-        hihu.classList.remove('animate__fadeIn');
-        hihu.style.zIndex = '-20';
-        element.style.display = 'block';
-        hihu.classList.add('animate__fadeOut');
-    }
-}
-
-function isLoggedIn() {
-    return getCookie('accessToken') !== undefined;
-}
-
-// Function to handle dynamic page navigation
-function navigateTo(url) {
-    // Check if the user is authenticated before allowing access to certain pages
-    if (url !== "/login" && !isLoggedIn()) {
-        // If not logged in, redirect to login page
-        window.location.href = '/login';
-        return;
-    }
-
-    // If logged in or the link is '/login', navigate to the desired route
-    window.location.href = url;
-}
-
-// Function to get a specific cookie (in this case, 'accessToken')
-// Helper function to get cookies (if using cookies for JWT tokens)
-function getCookie(name) {
-    const value = "; " + document.cookie;
-    const parts = value.split("; " + name + "=");
-    if (parts.length == 2) return parts.pop().split(";").shift();
-}
-
-// Adding event listeners for links in navbar
-document.getElementById("home-link").addEventListener("click", () => navigateTo('/home'));
-document.getElementById("about-link").addEventListener("click", () => navigateTo('/about'));
-document.getElementById("contact-link").addEventListener("click", () => navigateTo('/contact'));
-document.getElementById("profile-link").addEventListener("click", () => navigateTo('/profile'));
-document.getElementById("mysubject-link").addEventListener("click", () => navigateTo('/mysubject'));
-
-
-    </script>
 </head>
 <body>
     <section class="nav-section">
@@ -109,7 +41,7 @@ document.getElementById("mysubject-link").addEventListener("click", () => naviga
 
     <div class="container">
         <h1>Contact Us</h1>
-        <form >
+        <form action="/feedback/contact" id="feedbackContact">
             <div class="form-group">
                 <label for="name">Your Name</label>
                 <input type="text" id="name" name="name" placeholder="Enter your name" required>
@@ -156,6 +88,110 @@ document.getElementById("mysubject-link").addEventListener("click", () => naviga
         <p>&copy; 2024 Q-Banker. All Rights Reserved.</p>
     </footer>
         </section>
+        <script>
+document.getElementById("feedbackContact").addEventListener("submit", function(e) {
+    e.preventDefault();
 
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let message = document.getElementById("message").value;
+
+    if (name.length <= 0 || email.length <= 0 || message.length <= 0) {
+        alert("Please fill all the fields");
+        return;
+    }
+
+    fetch('/feedback/contact', {
+        method: 'POST',
+        headers: { // Corrected key
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            name,
+            email,
+            message
+        })
+    })
+    .then(res => {
+        if (!res.ok) { // Check for HTTP errors
+            throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.json();
+    })
+    .then(data => {
+        console.log(data);
+        alert(data.message);
+    })
+    .catch(err => {
+        console.error(err);
+        alert("Something went wrong. Please try again.");
+    });
+});
+
+
+        function showForm() {
+            document.querySelector('.container').style.display = 'block';
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+
+        
+function menubar() {
+    let hihu = document.querySelector('.menu-data');
+    let element = document.getElementById('Menu-bar');
+    // let profilepic = document.getElementById("profilePic");
+
+
+    if (hihu) {
+        hihu.classList.remove('animate__fadeOut');
+        element.style.display = 'none';
+        hihu.style.zIndex = '1';
+        hihu.classList.add('animate__fadeIn');
+        // profilepic.remove();
+        
+
+    }
+}
+
+function closebar() {
+    let hihu = document.querySelector('.menu-data');
+    let element = document.getElementById('Menu-bar');
+    if (hihu) {
+        hihu.classList.remove('animate__fadeIn');
+        hihu.style.zIndex = '-20';
+        element.style.display = 'block';
+        hihu.classList.add('animate__fadeOut');
+    }
+}
+
+function isLoggedIn() {
+    return getCookie('accessToken') !== undefined;
+}
+function navigateTo(url) {
+    if (url !== "/login" && !isLoggedIn()) {
+        window.location.href = '/login';
+        return;
+    }
+
+    window.location.href = url;
+}
+
+// Function to get a specific cookie (in this case, 'accessToken')
+// Helper function to get cookies (if using cookies for JWT tokens)
+function getCookie(name) {
+    const value = "; " + document.cookie;
+    const parts = value.split("; " + name + "=");
+    if (parts.length == 2) return parts.pop().split(";").shift();
+}
+
+// Adding event listeners for links in navbar
+document.getElementById("home-link").addEventListener("click", () => navigateTo('/home'));
+document.getElementById("about-link").addEventListener("click", () => navigateTo('/about'));
+// document.getElementById("contact-link").addEventListener("click", () => navigateTo('/contact'));
+document.getElementById("profile-link").addEventListener("click", () => navigateTo('/profile'));
+document.getElementById("mysubject-link").addEventListener("click", () => navigateTo('/mysubject'));
+
+
+
+        </script>
 </body>
 </html>
