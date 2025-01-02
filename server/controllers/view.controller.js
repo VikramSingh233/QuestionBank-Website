@@ -84,7 +84,22 @@ export const getSubjects=async(req,res)=>{
         }
         const subjects = user.subjects;
         const username = user.username;
-        res.status(200).json({ subjects , username });
+        const TotalSubjects = subjects.length;
+        let TotalNumberOfQuestions = 0;
+        let subjectWithNumberOfQuestion=[];
+        let Top2Subject=[];
+        for (const subject of subjects) {
+            let response = await Subject.findById(subject.subjectId);
+            if (response) {
+                TotalNumberOfQuestions += response.questions.length;
+                subjectWithNumberOfQuestion.push({subjectName:subject.subjectName,numberOfQuestions:response.questions.length});
+            }
+        }
+        subjectWithNumberOfQuestion.sort((a, b) => b.numberOfQuestions - a.numberOfQuestions);
+        Top2Subject.push(subjectWithNumberOfQuestion[0]);
+        Top2Subject.push(subjectWithNumberOfQuestion[1]);
+        
+        res.status(200).json({ subjects , username,TotalSubjects,TotalNumberOfQuestions,Top2Subject });
     } catch (error) {
         console.error("Error retrieving subjects:", error);
         res.status(500).json({ message: "Error retrieving subjects", error });
@@ -127,12 +142,12 @@ export const getSubjectDetails = async (req, res) => {
             subjectName: subjectDetails.subjectName,
             subjectId: subjectDetails._id,
             teacherName: subjectDetails.teacherName || "Unknown Teacher",
-            questions: subjectDetails.questions.map((q) => ({
-                text: q.questionId.question,
-                marks: q.questionId.mark || "N/A",
-                topic: q.questionId.topicName || "N/A",
-                tags: q.questionId.tagName || "N/A",
-            })),
+            // questions: subjectDetails.questions.map((q) => ({
+            //     text: q.questionId.question,
+            //     marks: q.questionId.mark || "N/A",
+            //     topic: q.questionId.topicName || "N/A",
+            //     tags: q.questionId.tagName || "N/A",
+            // })),
         };
         // Render the EJS template
         res.status(200).render("subjecttemplate", dataToRender); 

@@ -38,7 +38,7 @@ app.use(cookieParser())
 import  healthCheckRouter  from './routes/healthcheck.route.js';
 import userRouter from "./routes/user.route.js"
 import viewsRouter from "./routes/view.route.js";
-
+import generateRouter from "./routes/generateQuestionPaper.route.js"
 import feedback from './routes/feedback.route.js';
 
 
@@ -48,6 +48,7 @@ app.use("/api/v1/healthcheck",healthCheckRouter)
 app.use("/api/v1/user",userRouter)
 app.use("/", viewsRouter);
 app.use("/feedback",feedback)
+app.use("/generate",generateRouter)
 
 
 

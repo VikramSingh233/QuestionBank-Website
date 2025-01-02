@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Q-Banker Subjects</title>
     <link rel="stylesheet" href="/css/mysubject.css" />
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
+  />
   </head>
 
   <body>
@@ -25,8 +29,8 @@
           </div>
       </nav>
       <article>
-        <h1>Welcome to Q-Banker ,<b id="UserName">User</b></h1>
-        <div class="mySubjectButtons">
+        <h1 data-aos="fade-up">Welcome to Q-Banker ,<b id="UserName">User</b></h1>
+        <div class="mySubjectButtons" data-aos="fade-up">
         <button type="submit" class="AddSubject" id="AddSubject">
           + Add Subject
         </button>
@@ -39,16 +43,12 @@
         
       </div>
     </article>
-    
-    <details>
-      Here You can Add Subject to Your Dashboard . After Adding the Subject
-      You Can Further Add Questions into that .
-    </details>
-      <div class="SubjectGridBox" id="SubjectGridBox">
+  
+      <div class="SubjectGridBox" id="SubjectGridBox" data-aos="fade-up">
         
 
       </div>
-    <div class="AddSubjectPopup">
+    <div class="AddSubjectPopup" >
       <button class="close-popup-btn">&times;</button>
       <form class="form" action="/mySubject/AddSubject"  id="AddSubjectForm">
         <h3 class="title">ADD SUBJECT</h3>
@@ -76,7 +76,7 @@
     
 
     <!-- Popup container -->
-    <div id="downloadpopupContainer" class="downloadpopupContainer">
+    <div id="downloadpopupContainer" class="downloadpopupContainer" data-aos="fade-up">
       <div class="download-popup-content">
         <!-- <span id="closeDownloadPopup" class="closeDownloadPopup">&times;</span> -->
         <!-- <h2></h2> -->
@@ -84,7 +84,7 @@
           
       </div>
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script src="/js/mysubject.js">
   </script>
   </body>

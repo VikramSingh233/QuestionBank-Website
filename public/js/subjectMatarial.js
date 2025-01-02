@@ -1,4 +1,8 @@
-
+AOS.init({
+  easing: 'ease-in-out',
+  duration: 1000,
+  once: true,  // trigger animation once per element
+});
 const addQuestionBtn = document.getElementById("add-question-btn");
 const formSection = document.getElementById("form-section");
 const questionType = document.getElementById("question-type");

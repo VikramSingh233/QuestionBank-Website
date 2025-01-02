@@ -1,50 +1,95 @@
+/* Global Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #FF6F61, #D7CFF7); 
-    padding: 30px 0;
+/* Color Theme Variables */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --light-color: #ecf0f1;
+    --hover-color: #2980b9;
+    --text-color: #34495e;
+    --text-light: #7f8c8d;
+    --social-color: #bdc3c7;
+    --button-color: #1abc9c;
 }
 
+/* Body */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, var(--primary-color), var(--light-color));
+    padding: 30px 0;
+    transition: all 0.5s ease;
+}
+
+/* Container */
 .container {
     width: 70%;
     max-width: 850px;
     margin: 0 auto;
-    background: #ffffff;
+    background: var(--light-color);
     border-radius: 12px;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
     padding: 30px;
+    overflow: hidden;
+    transition: all 0.5s ease;
 }
 
+/* Header */
 .header {
     text-align: center;
     margin-bottom: 30px;
+    animation: fadeIn 1s ease-in-out;
 }
 
 .header h1 {
     font-size: 28px;
-    color: #4e4e4e;
+    color: var(--text-color);
     margin-bottom: 10px;
     text-transform: uppercase;
 }
 
 .header p {
     font-size: 14px;
-    color: #7b7b7b;
+    color: var(--text-light);
 }
 
+/* Scroll Animations */
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Form Section */
 .form-section {
     margin-bottom: 20px;
+    animation: slideInLeft 1s ease-out;
 }
 
 .form-section label {
     font-size: 16px;
     font-weight: bold;
-    color: #444;
+    color: var(--text-color);
     display: block;
     margin-bottom: 6px;
 }
@@ -55,18 +100,18 @@ body {
     width: 100%;
     padding: 10px;
     border-radius: 4px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--social-color);
     font-size: 14px;
     margin-bottom: 12px;
-    background-color: #f8f8f8;
+    background-color: var(--light-color);
     transition: all 0.3s ease;
 }
 
 .form-section input:focus,
 .form-section select:focus,
 .form-section textarea:focus {
-    border-color: #FF6F61;
-    box-shadow: 0 0 6px rgba(255, 111, 97, 0.5);
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 6px rgba(52, 152, 219, 0.5);
     outline: none;
 }
 
@@ -75,9 +120,23 @@ body {
     display: inline-block;
 }
 
+/* Time Period Section */
+.time-period-section {
+    display: flex;
+    align-items: center;
+    animation: slideInLeft 1s ease-out;
+}
+
+.time-period-section input {
+    width: 40%;
+    margin-right: 8px;
+}
+
+/* Question Section */
 .question-section {
     margin-top: 20px;
     margin-bottom: 30px;
+    animation: slideInRight 1s ease-out;
 }
 
 .question-item {
@@ -97,20 +156,11 @@ body {
     width: 15%;
 }
 
-.time-period-section {
-    display: flex;
-    align-items: center;
-}
-
-.time-period-section input {
-    width: 40%;
-    margin-right: 8px;
-}
-
+/* Button */
 .btn {
     padding: 12px 25px;
-    background-color: #FF6F61;
-    color: white;
+    background-color: var(--button-color);
+    color: var(--light-color);
     font-size: 16px;
     border: none;
     border-radius: 5px;
@@ -119,20 +169,21 @@ body {
 }
 
 .btn:hover {
-    background-color: #D45D4D;
+    background-color: var(--hover-color);
     transform: scale(1.05);
 }
 
+/* Footer */
 .footer {
     text-align: center;
     margin-top: 30px;
     font-size: 12px;
-    color: #7b7b7b;
+    color: var(--text-light);
 }
 
 .footer a {
     text-decoration: none;
-    color: #FF6F61;
+    color: var(--secondary-color);
     font-weight: bold;
 }
 
@@ -140,6 +191,54 @@ body {
     text-decoration: underline;
 }
 
+/* Scroll Animations for Different Sections */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Apply fade-in animations to elements on scroll */
+[data-aos="fade-up"] {
+    animation: fadeInUp 1s ease-out;
+}
+
+[data-aos="fade-left"] {
+    animation: fadeInLeft 1s ease-out;
+}
+
+[data-aos="fade-right"] {
+    animation: fadeInRight 1s ease-out;
+}
+
+/* Media Query */
 @media (max-width: 768px) {
     .container {
         width: 85%;

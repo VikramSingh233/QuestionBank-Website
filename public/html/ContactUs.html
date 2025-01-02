@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us</title>
     <link rel="stylesheet" href="/css/ContactUs.css">
-
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
+  />
 </head>
 <body>
     <section class="nav-section">
@@ -27,8 +30,8 @@
             </div>
         </nav>
         
-    <div class="hero">
-        <div class="hero-content">
+    <div class="hero"   data-aos="fade-up">
+        <div class="hero-content"   data-aos="fade-up">
             <h1>Contact Us</h1>
             <p>We’re here to help and answer any questions you might have. Please don’t hesitate to get in touch with us!</p>
 
@@ -36,44 +39,44 @@
             <a href="#" class="cta" onclick="showForm()">Contact</a>
             <p>Click on Contact to fill the below form .</p>
         </div>
-        <img src="/src/contactuspage.webp" alt="Contact Illustration">
+        <img src="/src/contactuspage.webp" alt="Contact Illustration"   data-aos="fade-up">
     </div>
 
-    <div class="container">
+    <div class="container"   data-aos="fade-up">
         <h1>Contact Us</h1>
         <form action="/feedback/contact" id="feedbackContact">
-            <div class="form-group">
+            <div class="form-group"   data-aos="fade-up">
                 <label for="name">Your Name</label>
                 <input type="text" id="name" name="name" placeholder="Enter your name" required>
             </div>
-            <div class="form-group">
+            <div class="form-group"   data-aos="fade-up">
                 <label for="email">Your Email</label>
                 <input type="email" id="email" name="email" placeholder="Enter your email" required>
             </div>
-            <div class="form-group">
+            <div class="form-group"   data-aos="fade-up">
                 <label for="message">Your Message</label>
                 <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
             </div>
-            <div class="form-group">
+            <div class="form-group"   data-aos="fade-up">
                 <button type="submit" class="button">Send Message</button>
             </div>
         </form>
     </div>
 
-    <div class="content">
+    <div class="content"   data-aos="fade-up">
         <h2>How to Reach Us</h2>
-        <p><strong>Customer Support Email:</strong> <a href="mailto:supportqbanker@gmail.com">supportqbanker@gmail.com</a><br>
+        <p   data-aos="fade-up"><strong>Customer Support Email:</strong> <a href="mailto:supportqbanker@gmail.com">supportqbanker@gmail.com</a><br>
         For immediate assistance, you can email us directly.</p>
 
-        <p><strong>Hours of Operation:</strong><br>
+        <p   data-aos="fade-up"><strong>Hours of Operation:</strong><br>
         Monday - Friday: 9 AM to 6 PM (Local Time)<br>
         We strive to respond to all inquiries within 24-48 hours.</p>
 
-        <p><strong>Feedback & Suggestions:</strong><br>
+        <p   data-aos="fade-up"><strong>Feedback & Suggestions:</strong><br>
         Do you have ideas on how we can improve? We’d love to hear your thoughts! Use the form to share your feedback.</p>
 
-        <h2>Why Contact Us?</h2>
-        <ul>
+        <h2   data-aos="fade-up">Why Contact Us?</h2>
+        <ul   data-aos="fade-up">
             <li>To get help resolving technical issues or bugs.</li>
             <li>For account-related questions.</li>
             <li>To report errors or inaccuracies in the content.</li>
@@ -81,14 +84,20 @@
             <li>To collaborate or partner with us.</li>
         </ul>
 
-        <p>Our goal is to ensure you have the best experience using our platform! Let’s work together to make learning simple, engaging, and stress-free.</p>
+        <p   data-aos="fade-up">Our goal is to ensure you have the best experience using our platform! Let’s work together to make learning simple, engaging, and stress-free.</p>
     </div>
 
     <footer>
         <p>&copy; 2024 Q-Banker. All Rights Reserved.</p>
     </footer>
         </section>
+        <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
         <script>
+            AOS.init({
+    easing: 'ease-in-out',
+    duration: 1000,
+    once: true,  // trigger animation once per element
+  });
 document.getElementById("feedbackContact").addEventListener("submit", function(e) {
     e.preventDefault();
 

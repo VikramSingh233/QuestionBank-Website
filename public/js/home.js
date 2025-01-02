@@ -1,3 +1,9 @@
+AOS.init({
+    easing: 'ease-in-out',
+    duration: 1000,
+    once: true,  // trigger animation once per element
+  });
+
 function menubar() {
     let hihu = document.querySelector('.menu-data');
     let element = document.getElementById('Menu-bar');
@@ -59,3 +65,30 @@ document.getElementById("mysubject-link").addEventListener("click", () => naviga
 
 
 
+let getUserSubjectDetails = async () => {
+    let response = await fetch('/mySubject/GetSubjects', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({})
+    });
+    let data = await response.json();
+    let username = data.username;
+    document.getElementById("UserName").innerHTML = username;
+    let TotalNumberOfSubjects = data.TotalSubjects;
+    let TotalNumberOfQuestions = data.TotalNumberOfQuestions;
+    let TopTwoSubject = data.Top2Subject;
+
+
+
+    document.getElementById("TopOneSubject").innerHTML=TopTwoSubject[0].subjectName
+    document.getElementById("TopOneSubjectTotalQuestion").innerHTML=TopTwoSubject[0].numberOfQuestions
+    document.getElementById("TopTwoSubject").innerHTML=TopTwoSubject[1].subjectName
+    document.getElementById("TopTwoSubjectTotalQuestion").innerHTML=TopTwoSubject[1].numberOfQuestions
+    document.getElementById("TotalNumberOfSubjects").innerHTML=TotalNumberOfSubjects
+    document.getElementById("TotalNumberOfQuestions").innerHTML=TotalNumberOfQuestions
+    return data;
+  };
+  
+  getUserSubjectDetails();

@@ -1,3 +1,9 @@
+AOS.init({
+  easing: 'ease-in-out',
+  duration: 1000,
+  once: true,  // trigger animation once per element
+});
+
 function isLoggedIn() {
   return getCookie('accessToken') !== undefined;
 }
@@ -132,7 +138,7 @@ document.body.addEventListener('click', function(e) {
 });
 
 
-document.getElementById("AddSubjectForm").addEventListener('submit', function (e) {
+document.getElementById("AddSubjectForm").addEventListener('submit', async function (e) {
   e.preventDefault();
   let SubjectName = document.getElementById("subjectname").value;
   let TeacherName = document.getElementById("teachername").value;
@@ -141,7 +147,7 @@ document.getElementById("AddSubjectForm").addEventListener('submit', function (e
   }
   else {
     document.getElementById("errorDisplaydiv").classList.add("errorDisplay")
-    fetch('/mySubject/AddSubject', {
+    await fetch('/mySubject/AddSubject', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
